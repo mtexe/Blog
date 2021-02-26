@@ -1,0 +1,20 @@
+<%- include("partials/header"); -%>
+  <h1>Today's Weather</h1>
+  <form class="box" action="/weather" method="post">
+    <div class="form-group">
+    <label>City </label>
+    <input class="form-control" type="text" name="city">
+    </div>
+    <button type="submit" class="btn btn-primary" name="button">Go</button>
+  </form>
+
+
+
+<% weathers.forEach(function(weather){ %>
+    <h3><%=weather.city;%> </h3>
+    <img src="<%=weather.image%>"">
+    <h3><%=weather.temp;%>°F</h3>
+    <h5>Weather: <%=weather.weatherDescription;%></h5>
+    <h5>Humidity: <%=weather.humidity;%>%</h5>
+    <% })%>
+<%- include("partials/footer");-%>

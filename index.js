@@ -72,7 +72,7 @@ app.get("/posts/:postName", function(req, res){
 //This EJS view will input a city name from user
 // Then need to write out an app.get function that will use the city name to query the Weather API to retrieve basic weather information - temperature, description and humidity
 // The display of the weather information must be saved to an array and then the results of the array must be pushed to the /weather EJS view to display
-// The /weather route and page created by weather.ejs page should allow for the input of the city name, and the display of the weather for the city - temperature in F, description and humidity
+// The /weather route and page created by weather.ejs page should allow for the input of the city name, and the display of the weather for the city - city name, weather icon image, temperature in F, description, humidity, wind direction
 
 
 app.listen(3000, function() {

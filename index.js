@@ -74,55 +74,6 @@ app.get("/posts/:postName", function(req, res){
 // The display of the weather information must be saved to an array and then the results of the array must be pushed to the /weather EJS view to display
 // The /weather route and page created by weather.ejs page should allow for the input of the city name, and the display of the weather for the city - temperature in F, description and humidity
 
-// Author of code below : YashaR - great work! 
-//posting the weather inputs
-
-//global array for weathers and inputs will be pushed in here
-let weathers = [];
-
-//getting the weather page
-app.get("/weather", function(req,res){
-  res.render("weather", {
-    weathers:weathers
-  });
-});
-
-app.post("/weather", function(req,res){
-//weathers array will be cleared everytime a post is made
-weathers = [];
-      const city = req.body.city;
-      const units = "imperial";
-      const apiKey = "67f6b382921c1e89b39b20d4f9556f22"; //DebasisB API Key
-      const url = "https://api.openweathermap.org/data/2.5/weather?APPID=" + apiKey + "&q=" +city+ "&units=" + units;
-      console.log(city);
-
-      https.get(url, function(response){
-
-          // gets individual items from Open Weather API
-          response.on("data", function(data){
-              const weatherData = JSON.parse(data);
-              const temp = weatherData.main.temp;
-              const city = weatherData.name;
-              const humidity = weatherData.main.humidity;
-              const weatherDescription = weatherData.weather[0].description;
-              const icon = weatherData.weather[0].icon;
-              const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-
-            //object that will be pushed back to weathers array and to weather.ejs
-              const weather = {
-                city: city,
-                image: imageURL,
-                temp: Math.round(temp),
-                weatherDescription: weatherDescription,
-                humidity: humidity
-              };
-              weathers.push(weather);
-              res.redirect("/weather");
-
-          });
-
-});
-});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
